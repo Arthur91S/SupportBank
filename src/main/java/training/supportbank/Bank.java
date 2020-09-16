@@ -1,5 +1,7 @@
 package training.supportbank;
 
+import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Bank {
@@ -12,17 +14,32 @@ public class Bank {
         this.accounts = new ArrayList<>();
     }
 
-    public void addTransaction(Account sender, Account receiver, Double amount, String note, String date) {
+    public void addTransaction(String senderName, String receiverName, String note , BigDecimal amount, String date) {
+        // check if sender and receiver accounts exist if not create
+        Account sender = findAccount(senderName);
+        if (sender == null){
+            sender = addAccount(senderName);
+        }
+
+        Account receiver = findAccount(receiverName);
+        if (receiver == null){
+            receiver = addAccount(receiverName);
+        }
+
         Transaction transaction = new Transaction(sender,receiver,note,amount,date);
         this.transactions.add(transaction);
     }
 
-    public boolean addAccount(String name){
-        if ( findAccount(name) != null){
-            this.accounts.add(new Account(name));
-            return true;
+    public Account addAccount(String name){
+        Account existingAccount = findAccount(name);
+        if (existingAccount != null){
+            return existingAccount;
         }
-        return false;
+         else {
+            Account newAccount = new Account(name);
+            this.accounts.add(newAccount);
+            return newAccount;
+        }
     }
 
     public Account findAccount(String name) {
@@ -34,14 +51,46 @@ public class Bank {
         return null;
     }
 
-
     public void getTransactions(){
-        int size = transactions.size();
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < transactions.size(); i++){
             System.out.println(transactions.get(i).toString());
         }
     }
 
-    public void getTransactions()
+    public void getBalance(){
+        // show balance for all people
+        // loop through accounts and get balance for each account.
+        for (int i = 0; i < accounts.size(); i++){
+            System.out.println(" Account: "  +accounts.get(i).getName() + " Balance: " + getBalance(accounts.get(i).getName()));
+        }
+    }
+
+    public BigDecimal getBalance(String name) {
+        BigDecimal balance = new BigDecimal(0);
+            for (int i = 0; i < transactions.size(); i++){
+                Transaction currentTransaction = transactions.get(i);
+
+                if (currentTransaction.getReceiver().getName().equals(name) ){
+                    balance = balance.add(currentTransaction.getAmount());
+                }
+                if (currentTransaction.getSender().getName().equals(name) ){
+                    balance = balance.subtract(currentTransaction.getAmount());
+                }
+            }
+        return balance;
+    }
+
+    public void getTransactions(String name){
+        // list all transactions for the account
+        System.out.println("Showing transactions for " + name);
+        for (int i = 0; i < transactions.size(); i++){
+            Transaction currentTransaction = transactions.get(i);
+            if (currentTransaction.getReceiver().getName().equals(name) || currentTransaction.getSender().getName().equals(name) ){
+                System.out.println("test");
+                System.out.println(transactions.get(i).toString());
+            }
+        }
+
+    }
 
 }

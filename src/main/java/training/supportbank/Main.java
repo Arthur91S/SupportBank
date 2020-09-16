@@ -1,47 +1,45 @@
 package training.supportbank;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String args[]) {
-        // Your code here!
-        System.out.println("Test!");
+
+        Scanner scan = new Scanner(System.in);
+        int option = 0;
+        boolean quit = false;
 
         Bank bank = new Bank();
         Process process = new Process();
-        process.loadCSV("Path here", bank);
+        process.loadCSV(bank);
 
-        bank.getTransactions();
+        while (!quit){
+            System.out.println(" \n Welcome to the Bank \n" +
+                    "1: List All (UserAccounts) \n"+
+                    "2: List UserTransactions \n" +
+                    "3: Quit \n");
 
-        System.out.println("Welcome to the Bank \n" +
-                "1: List All (UserAccounts) \n"+
-                "2: List UserTransactions ");
-                // Please enter account name
-
-        // Bank class
-            // done-- ArrayList<Transaction> transactions = new ArrayList<Transaction>;
-            // done-- ArrayList<UserAccount>  userAccounts = new ArrayList<UserAccount>;
-
-            // done addTransaction(From, to, amount, note, date)
-            // getTransactions(Account account);
-
-            // findAccount(String name) - returns userAccount object;
-            // createAccount(String name)
-            // getBalance(Account account)
-
-        // Account class
-            // done -- name
-            // done Account(String name);  // constructor
-            // done getName();
-
-        // Transaction class ?
-            // done-- sender
-            // done  -- receiver
-            // done -- note
-            // done -- amount
-            // done-- date
-
-        //  Process
-            // loadCSV(String path, Bank bank);
-                // loop over each name and add transactions
-            // loadJSON()
+            if (scan.hasNextInt()){
+                option = scan.nextInt();
+            }
+            scan.nextLine();
+            switch (option) {
+                case 1:
+                    bank.getBalance();
+                    break;
+                case 2:
+                    System.out.println("Enter account name");
+                    String accountName = scan.nextLine();
+                    bank.getTransactions(accountName);
+                    break;
+                case 3:
+                    System.out.println("Thank you, goodbye :)");
+                    quit = true;
+                    break;
+                default:
+                    System.out.println("!! Please type a number :)" );
+                    break;
+            }
+        }
     }
 }

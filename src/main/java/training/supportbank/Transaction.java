@@ -1,19 +1,37 @@
 package training.supportbank;
 
+import java.math.BigDecimal;
+
 public class Transaction {
 
     private Account sender;
     private Account receiver;
     private String note;
-    private double amount;
+    private BigDecimal amount;
     private String date;
 
-    public Transaction(Account sender, Account receiver, String note, double amount, String date) {
+    public Transaction(Account sender, Account receiver, String note, BigDecimal amount, String date) {
         this.sender = sender;
         this.receiver = receiver;
         this.note = note;
         this.amount = amount;
         this.date = date;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Account getSender() {
+        return sender;
+    }
+
+    public Account getReceiver() {
+        return receiver;
     }
 
     @Override

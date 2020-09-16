@@ -1,26 +1,47 @@
 package training.supportbank;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 public class Process {
 
 
-    public void loadCSV(String path, Bank bank) {
+    public void loadCSV(Bank bank) {
 
-        Account sender = new Account("Jon A");
-        Account receiver = new Account("Sarah T");
-        String note = "Pokemon Training";
-        double amount = 7.8;
-        String date = "01/01/2014";
+        String newPath = "/Users/astulpe/IdeaProjects/SupportBank/Transactions2014.csv";
 
-      //  bank.createAccount(sender);
-       // bank.createAccount(receiver);
+        String line = "";
+        String splitBy = ",";
+        try
+        {
+            //parsing a CSV file into BufferedReader class constructor
+            BufferedReader br = new BufferedReader(new FileReader(newPath));
 
-        bank.addTransaction(sender, receiver, amount, note, date);
-        bank.addTransaction(new Account("Uncle Ben"), new Account("Billy"), 15.99, "Something", "Yesterday");
-        bank.addTransaction(new Account("Billy"), new Account("Uncle Ben"), 10d, "Something", "Yesterday");
+            while ((line = br.readLine()) != null )   //returns a Boolean value
+            {
+                String[] transaction = line.split(splitBy);    // use comma as separator
+                 //            0   1   2   3        4
+                // csv order Date,From,To,Narrative,Amount
 
+                String sender = transaction[1];
+                String receiver = transaction[2];
+                String note = transaction[3];
+                MathContext mc = new MathContext(4);
+                BigDecimal amount = new BigDecimal(15.55, mc);
+                String date = transaction[0];
 
+                bank.addTransaction(sender,receiver,note, amount, date);
 
-
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println("Whoops, could not read the CSV file");
+            e.printStackTrace();
+        }
 
     }
 
