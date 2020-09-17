@@ -9,9 +9,9 @@ import java.math.MathContext;
 public class Process {
 
 
-    public void loadCSV(Bank bank) {
+    public void loadCSV(Bank bank, String filename) {
 
-        String newPath = "/Users/astulpe/IdeaProjects/SupportBank/files/Transactions2014.csv";
+        String newPath = "/Users/astulpe/IdeaProjects/SupportBank/files/" + filename;
 
         String line = "";
         String splitBy = ",";

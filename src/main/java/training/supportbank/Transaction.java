@@ -3,7 +3,6 @@ package training.supportbank;
 import java.math.BigDecimal;
 
 public class Transaction {
-    String newChange;
 
     private Account sender;
     private Account receiver;

@@ -1,9 +1,17 @@
 package training.supportbank;
 
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class Main {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static void main(String args[]) {
+
+        LOGGER.error("Hello testing");
 
         Scanner scan = new Scanner(System.in);
         int option = 0;
@@ -11,7 +19,8 @@ public class Main {
 
         Bank bank = new Bank();
         Process process = new Process();
-        process.loadCSV(bank);
+        //process.loadCSV(bank, "Transactions2014.csv");
+        process.loadCSV(bank, "DodgyTransactions2015.csv");
 
         while (!quit){
             System.out.println(" \n Welcome to the Bank \n" +
