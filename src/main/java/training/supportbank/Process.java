@@ -23,7 +23,7 @@ public class Process {
 
             while ((line = br.readLine()) != null )   //returns a Boolean value
             {
-                if (first == false){
+                if (!first){
                     first = true;
                     continue;
                 }
@@ -35,7 +35,7 @@ public class Process {
                 String receiver = transaction[2];
                 String note = transaction[3];
                 MathContext mc = new MathContext(4);
-                BigDecimal amount = new BigDecimal(15.55, mc);
+                BigDecimal amount = new BigDecimal(transaction[4], mc);
                 String date = transaction[0];
 
                 bank.addTransaction(sender,receiver,note, amount, date);

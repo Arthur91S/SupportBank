@@ -20,7 +20,7 @@ public class Main {
         Bank bank = new Bank();
         Process process = new Process();
         //process.loadCSV(bank, "Transactions2014.csv");
-        process.loadCSV(bank, "DodgyTransactions2015.csv");
+        process.loadCSV(bank, "Transactions2014.csv");
 
         while (!quit){
             System.out.println(" \n Welcome to the Bank \n" +
