@@ -11,8 +11,6 @@ public class Main {
 
     public static void main(String args[]) {
 
-        LOGGER.error("Hello testing");
-
         Scanner scan = new Scanner(System.in);
         int option = 0;
         boolean quit = false;
@@ -20,7 +18,8 @@ public class Main {
         Bank bank = new Bank();
         Process process = new Process();
         //process.loadCSV(bank, "Transactions2014.csv");
-        process.loadCSV(bank, "Transactions2014.csv");
+        //process.loadCSV(bank, "Transactions2014.csv");
+        process.loadJSON(bank, "Transactions2013.json");
 
         while (!quit){
             System.out.println(" \n Welcome to the Bank \n" +
