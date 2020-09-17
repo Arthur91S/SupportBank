@@ -11,10 +11,11 @@ public class Process {
 
     public void loadCSV(Bank bank) {
 
-        String newPath = "/Users/astulpe/IdeaProjects/SupportBank/Transactions2014.csv";
+        String newPath = "/Users/astulpe/IdeaProjects/SupportBank/files/Transactions2014.csv";
 
         String line = "";
         String splitBy = ",";
+        boolean first = false;
         try
         {
             //parsing a CSV file into BufferedReader class constructor
@@ -22,6 +23,10 @@ public class Process {
 
             while ((line = br.readLine()) != null )   //returns a Boolean value
             {
+                if (first == false){
+                    first = true;
+                    continue;
+                }
                 String[] transaction = line.split(splitBy);    // use comma as separator
                  //            0   1   2   3        4
                 // csv order Date,From,To,Narrative,Amount
