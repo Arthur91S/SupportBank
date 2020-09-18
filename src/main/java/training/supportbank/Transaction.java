@@ -4,16 +4,16 @@ import java.math.BigDecimal;
 
 public class Transaction {
 
-    private Account sender;
-    private Account receiver;
-    private String note;
-    private BigDecimal amount;
     private String date;
+    private Account fromAccount;
+    private Account toAccount;
+    private String narrative;
+    private BigDecimal amount;
 
-    public Transaction(Account sender, Account receiver, String note, BigDecimal amount, String date) {
-        this.sender = sender;
-        this.receiver = receiver;
-        this.note = note;
+    public Transaction(String date, Account fromAccount, Account toAccount, String narrative, BigDecimal amount) {
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
+        this.narrative = narrative;
         this.amount = amount;
         this.date = date;
     }
@@ -27,16 +27,16 @@ public class Transaction {
     }
 
     public Account getSender() {
-        return sender;
+        return fromAccount;
     }
 
     public Account getReceiver() {
-        return receiver;
+        return toAccount;
     }
 
     @Override
     public String toString() {
         return  "----------- Transaction  -------------" +
-                "\n From: " + sender.getName() + "\n To: " + receiver.getName() + "\n Note: " + note+ "\n Amount $" +amount + "\n Date: " + date;
+                "\n From: " + fromAccount.getName() + "\n To: " + toAccount.getName() + "\n Note: " + narrative + "\n Amount $" +amount + "\n Date: " + date;
     }
 }

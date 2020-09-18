@@ -26,7 +26,7 @@ public class Bank {
             receiver = addAccount(receiverName);
         }
 
-        Transaction transaction = new Transaction(sender,receiver,note,amount,date);
+        Transaction transaction = new Transaction(date, sender,receiver,note,amount);
         this.transactions.add(transaction);
     }
 

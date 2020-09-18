@@ -18,7 +18,7 @@ public class Main {
         Bank bank = new Bank();
         Process process = new Process();
         //process.loadCSV(bank, "Transactions2014.csv");
-        //process.loadCSV(bank, "Transactions2014.csv");
+       // process.loadCSV(bank, "DodgyTransactions2015.csv");
         process.loadJSON(bank, "Transactions2013.json");
 
         while (!quit){
