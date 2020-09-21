@@ -25,7 +25,8 @@ public class Main {
             System.out.println(" \n Welcome to the Bank \n" +
                     "1: List All (UserAccounts) \n"+
                     "2: List UserTransactions \n" +
-                    "3: Quit \n");
+                    "3: TODO Import file \n" +
+                    "4: Quit \n");
 
             if (scan.hasNextInt()){
                 option = scan.nextInt();
@@ -40,7 +41,7 @@ public class Main {
                     String accountName = scan.nextLine();
                     bank.getTransactions(accountName);
                     break;
-                case 3:
+                case 4:
                     System.out.println("Thank you, goodbye :)");
                     quit = true;
                     break;

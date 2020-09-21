@@ -25,9 +25,7 @@ public class Process {
         String splitBy = ",";
         try
         {
-            //parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(newPath));
-
             br.readLine(); // skips first line
 
             int i = 0;
@@ -70,7 +68,6 @@ public class Process {
 
             for ( int i = 0; i < objects.size(); i++) {
                 LinkedTreeMap transaction = (LinkedTreeMap) objects.get(i);
-
                try {
                    String sender = (String)transaction.get("fromAccount");
                    String receiver = (String)transaction.get("toAccount");
@@ -80,7 +77,7 @@ public class Process {
                    String date = (String)transaction.get("date");
                    bank.addTransaction(sender,receiver,note, amount, date);
                } catch (Exception e){
-                   LOGGER.error("Skiped line " + i);
+                   LOGGER.error("Skipped line " + i);
                    continue;
                }
             }

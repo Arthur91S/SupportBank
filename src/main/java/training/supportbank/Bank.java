@@ -66,6 +66,7 @@ public class Bank {
     }
 
     public BigDecimal getBalance(String name) {
+        // return balance for a specific account
         BigDecimal balance = new BigDecimal(0);
             for (int i = 0; i < transactions.size(); i++){
                 Transaction currentTransaction = transactions.get(i);
